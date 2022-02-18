@@ -9,11 +9,11 @@
                 <th>Model:</th>
                 <th>Price:</th>
     </tr>
-            @foreach ($products as $product)
+            @foreach ($query as $values)
             <tr>
-                <td>{{$product['name']}}</td>
-                <td>{{$product['model']}}</td>
-                <td>{{$product['price']}} Euro</td>
+                <td>{{$values->name}}</td>
+                <td>{{$values->model}}</td>
+                <td>{{$values->price}} Euro</td>
             </tr>
             @endforeach
             </tbody>
