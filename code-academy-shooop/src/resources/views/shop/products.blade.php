@@ -6,17 +6,19 @@
 
             @include('shop.partials.filteractive')
 
-            @foreach ($products as $values)
-                <div class="card" style="width: 18rem;">
-                    <img src="storage/tablet.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$values->name}}</h5>
-                        <p class="card-text">{{$values->model}}</p>
-                        <p class="card-text">{{$values->price}} Euro</p>
-                        <a href="#" class="btn btn-outline-primary">Add to Shopping Cart</a>
+            <div class="col-8 row">
+                @foreach ($products as $values)
+                    <div class="card text-center" style="width: 17rem;">
+                        <img src="storage/tablet.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$values->name}}</h5>
+                            <p class="card-text">{{$values->model}}</p>
+                            <p class="card-text">{{$values->price}} Euro</p>
+                            <a href="#" class="btn btn-outline-primary">Add to Shopping Cart</a>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 
