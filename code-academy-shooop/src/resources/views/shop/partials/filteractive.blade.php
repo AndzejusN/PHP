@@ -18,7 +18,8 @@
         <div class="col-12 mb-3">
             <div class="input-group">
                 <div class="input-group-text">Search</div>
-                <input type="text" class="form-control" placeholder="Search by model..." name="search"
+                <label for="search"></label>
+                <input type="text" class="form-control" placeholder="Search by model..." id ="search" name="search"
                        value="{{ $search_val ?? NULL }}">
             </div>
         </div>
