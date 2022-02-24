@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<header class="container">
+<header class="container mb-5">
     <div class="w-100 py-3">
         <ul class="list-unstyled text-light">
             <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('products')}}">Products</a>
@@ -18,6 +18,7 @@
             </li>
         </ul>
     </div>
+    <hr>
 </header>
 
 <div class="container">
