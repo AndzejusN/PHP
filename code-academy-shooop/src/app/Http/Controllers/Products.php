@@ -13,8 +13,6 @@ class Products extends Controller
     {
         $query = Models\Product::orderBy('id');
 
-//        where('active', true);
-
         if ($request->has('category') && is_numeric($request->category)) {
             $query->where('category_id', $request->category);
         }
@@ -33,10 +31,24 @@ class Products extends Controller
 
         $view = view('shop.products', compact('products', 'categories'));
 
-        $view->with('category_id', $request->category)->with('active', $request->check)->with('search_val', $request->search);
+        $view
+            ->with('category_id', $request->category)
+            ->with('active', $request->check)
+            ->with('search_val', $request->search);
 
         return $view;
     }
+
+    public function create(Request $request)
+    {
+        return view('product.create');
+    }
+
+    public function visualisation(Request $request)
+    {
+        return view('product.visualisation');
+    }
+
 }
 
 

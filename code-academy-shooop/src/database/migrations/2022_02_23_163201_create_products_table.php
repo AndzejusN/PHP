@@ -19,13 +19,15 @@ return new class extends Migration
             $table->char('model');
             $table->integer('price')->unsigned();
             $table->bigInteger('category_id')->unsigned();
+            $table->string('identifier')->unique();
             $table->smallInteger('active');
             $table->timestamps();
 
         });
 
         Schema::table('products', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('restrict');
+            $table->foreign('category_id')->references('id')
+                ->on('product_categories')->onDelete('restrict');
         });
     }
 

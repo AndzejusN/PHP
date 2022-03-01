@@ -10,6 +10,10 @@
 <header class="container mb-5">
     <div class="w-100 py-3">
         <ul class="list-unstyled text-light">
+            <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('login')}}">Login</a>
+            </li>
+        </ul>
+        <ul class="list-unstyled text-light">
             <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('products')}}">Products</a>
             </li>
             <li style="display: inline"><a type="button" class="btn btn-outline-dark"
@@ -17,7 +21,9 @@
             <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('contacts')}}">Contacts</a>
             </li>
         </ul>
+
     </div>
+
     <hr>
 </header>
 
@@ -32,7 +38,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; 2021 Company Name
+                            Copyright &copy; 2022 Company Shooop
                         </p>
                     </div>
                 </div>
