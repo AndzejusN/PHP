@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->char('name');
-            $table->char('model');
+            $table->string('name',255);
+            $table->string('model',255);
             $table->integer('price')->unsigned();
             $table->bigInteger('category_id')->unsigned();
             $table->smallInteger('identifier');
@@ -30,14 +30,10 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')
                 ->on('product_categories')->onDelete('restrict');
-        });
 
-        Schema::table('products', function (Blueprint $table) {
             $table->foreign('identifier')->references('id')
                 ->on('identifier_types')->onDelete('restrict');
-        });
 
-        Schema::table('products', function (Blueprint $table) {
             $table->foreign('file_id')->references('id')
                 ->on('files')->onDelete('cascade');
         });
