@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->char('path');
-            $table->bigInteger('item_id')->unsigned();
+            $table->char('item_name');
             $table->char('item_type');
+            $table->char('path');
             $table->timestamps();
-
         });
     }
 
@@ -30,6 +29,5 @@ return new class extends Migration
      */
     public function down()
     {
-        //
     }
 };

@@ -19,8 +19,10 @@ return new class extends Migration
             $table->char('model');
             $table->integer('price')->unsigned();
             $table->bigInteger('category_id')->unsigned();
-            $table->string('identifier')->unique();
+            $table->smallInteger('identifier');
+            $table->string('identifier_name')->unique();
             $table->smallInteger('active');
+            $table->bigInteger('file_id')->unsigned();
             $table->timestamps();
 
         });
@@ -28,6 +30,16 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')
                 ->on('product_categories')->onDelete('restrict');
+        });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('identifier')->references('id')
+                ->on('identifier_types')->onDelete('restrict');
+        });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('file_id')->references('id')
+                ->on('files')->onDelete('cascade');
         });
     }
 

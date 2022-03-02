@@ -4,9 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use \App\Models\Product;
+use App\Models\File;
 
-class ProductsSeeder extends Seeder
+
+class FilesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +16,6 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(20)->create();
+        File::factory(20)->create();
     }
 }

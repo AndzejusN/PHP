@@ -30,8 +30,8 @@ class CategorySeeder extends Seeder
                     'active' => TRUE,
                     'name' => $category
                 ]);
-            }
 
+            }
         }
     }
 }
