@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use \App\Models\Product;
 
@@ -15,6 +16,10 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory(20)->create();
+        Product::factory()->state(new Sequence(
+            ['name' => 'Camera'],
+            ['name' => 'Laptop'],
+            ['name' => 'Tablet']
+        ))->count(20)->create();
     }
 }
