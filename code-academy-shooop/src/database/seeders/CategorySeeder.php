@@ -16,7 +16,6 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-
         $categories = [
             'Mobile phones',
             'Electronics',

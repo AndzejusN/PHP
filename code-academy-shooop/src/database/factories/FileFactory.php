@@ -25,8 +25,8 @@ class FileFactory extends Factory
 
         return [
             'item_name' => Arr::random($names),
-//          'item_type' => $this->faker->fileExtension(),
             'item_type' => 'png',
+//          'item_type' => $this->faker->fileExtension(),
             'path' => 'storage/'
         ];
     }
