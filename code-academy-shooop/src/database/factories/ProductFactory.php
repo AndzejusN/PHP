@@ -23,10 +23,10 @@ class ProductFactory extends Factory
             'name' => $this->faker->words(rand(2, 3), TRUE),
             'model' => $this->faker->words(rand(2, 3), TRUE),
             'price' => $this->faker->randomNumber(3),
-            'category_id' => Category::inRandomOrder()->first()->id,
-            'identifier' => Identifier::inRandomOrder()->first()->id,
+            'category_id' => optional(Category::inRandomOrder()->first())->id,
+            'identifier' => optional(Identifier::inRandomOrder()->first())->id,
             'identifier_name' => $this->faker->ean13(),
-            'file_id' => File::inRandomOrder()->first()->id,
+            'file_id' => optional(File::inRandomOrder()->first())->id,
             'active' => rand(0, 1)
         ];
     }

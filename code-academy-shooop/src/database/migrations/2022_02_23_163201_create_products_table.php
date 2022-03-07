@@ -28,6 +28,7 @@ return new class extends Migration
         });
 
         Schema::table('products', function (Blueprint $table) {
+
             $table->foreign('category_id')->references('id')
                 ->on('product_categories')->onDelete('restrict');
 
