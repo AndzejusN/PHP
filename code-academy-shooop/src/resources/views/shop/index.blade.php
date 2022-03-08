@@ -18,10 +18,11 @@
             </li>
             <li style="display: inline"><a type="button" class="btn btn-outline-dark"
                                            href="{{route('orders')}}">Orders</a></li>
+            <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('product.create')}}">Create Product</a>
+            </li>
             <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('contacts')}}">Contacts</a>
             </li>
         </ul>
-
     </div>
 
     <hr>

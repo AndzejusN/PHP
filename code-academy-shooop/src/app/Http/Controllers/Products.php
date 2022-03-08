@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use App\Models;
 
 class Products extends Controller
@@ -41,14 +41,29 @@ class Products extends Controller
 
     public function create(Request $request)
     {
-        return view('product.create');
+        $categories = Models\Category::get();
+        $view = view('shop.create', compact('categories'));
+        $view->with('category_id', $request->category);
+
+        return $view;
     }
 
-    public function visualisation(Request $request)
+    public function store(Request $request)
     {
-        return view('product.visualisation');
-    }
+        $rules = [
+            'category_id' => ['required', 'exists:App\Models\Category,id'],
+            'model' => 'required|max:30',
+            'active' => 'required|numeric',
+            'name' => 'required|max:50',
+            'price' => 'required|numeric',
+        ];
 
+        $validated = $request->validate($rules);
+
+        $product = Models\Product::create($validated);
+
+        return view('shop.store', compact('product'));
+    }
 }
 
 

@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('model',255);
             $table->integer('price')->unsigned();
             $table->bigInteger('category_id')->unsigned();
-            $table->smallInteger('identifier');
-            $table->string('identifier_name')->unique();
+            $table->smallInteger('identifier')->nullable();
+            $table->string('identifier_name')->unique()->nullable();
             $table->smallInteger('active');
-            $table->bigInteger('file_id')->unsigned();
+            $table->bigInteger('file_id')->unsigned()->nullable();
             $table->timestamps();
 
         });

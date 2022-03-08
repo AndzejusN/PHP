@@ -29,8 +29,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [Products::class, 'show'])->name('index');
 Route::get('/products', [Products::class, 'show'])->name('products');
-Route::get('/products/create', [Products::class, 'create'])->name('products.create');
-Route::get('/products/{product}', [Products::class, 'visualisation'])->name('products.visualisation');
+Route::get('/product/create', [Products::class, 'create'])->name('product.create');
+Route::post('/product/store', [Products::class, 'store'])->name('product.store');
 Route::get('/orders', [Orders::class, 'show'])->name('orders');
 Route::get('/contacts', [Contacts::class, 'show'])->name('contacts');
 Route::get('/login', [Login::class, 'show'])->name('login');
