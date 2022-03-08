@@ -14,22 +14,22 @@
                             <option selected disabled>Please select product category...</option>
                             @foreach ($categories as $category)
                                 <option
-                                    value="{{$category->id}}" {{$category->id == $category_id ? 'selected' : ''}}>{{$category ->name}}</option>
+                                    value="{{$category->id}}" {{$category->id == $category_id ? 'selected' : ''}}>{{$category->name}}</option>
                             @endforeach
                         </select>
                         @error('category_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <p style="color: red;">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-outline mb-4">
                         <label for="active"></label>
-                        <select class="form-control @error('category') is-invalid @enderror" id="active" name="active">
+                        <select class="form-control @error('active') is-invalid @enderror" id="active" name="active">
                             <option selected disabled>Please make active or not...</option>
                             <option value="0">Not Active</option>
                             <option value="1">Active</option>
                         </select>
                         @error('active')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <p style="color: red;">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-outline">
@@ -38,25 +38,25 @@
                                placeholder="Product name" value="{{old('name')}}"/>
                         <label class="form-label" for="name"></label>
                         @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <p style="color: red;">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-outline">
                         <input type="text" name="model" id="model"
-                               class="form-control form-control-sm @error('category') is-invalid @enderror"
+                               class="form-control form-control-sm @error('model') is-invalid @enderror"
                                placeholder="Model" value="{{old('model')}}"/>
                         <label class="form-label" for="model"></label>
                         @error('model')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <p style="color: red;">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-outline">
                         <input type="text" name="price" id="price"
-                               class="form-control form-control-sm @error('category') is-invalid @enderror"
+                               class="form-control form-control-sm @error('price') is-invalid @enderror"
                                placeholder="Price" value="{{old('price')}}"/>
                         <label class="form-label" for="price"></label>
                         @error('price')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <p style="color: red;">{{ $message }}</p>
                         @enderror
                     </div>
                     <button class="btn btn-dark" type="submit" id="main-submit">CREATE PRODUCT</button>
