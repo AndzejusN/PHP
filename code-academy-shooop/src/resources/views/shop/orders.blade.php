@@ -27,7 +27,7 @@
         @endforeach
     </div>
 
-    @if(!count($orders))
+    @if($orders->isEmpty())
         <div class="py-5">
             <h1>Order list is empty</h1>
         </div>

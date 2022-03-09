@@ -17,7 +17,7 @@ class Orders extends Controller
         $information->product_id = $request->id;
         $information->save();
 
-        $orders = $this->getSessions($request);
+        $orders = $this->getOrders($request);
 
         $products = Product::get();
 
@@ -30,19 +30,19 @@ class Orders extends Controller
         $query = Order::where('product_id', $product_id);
         $query->delete();
 
-        $orders = $this->getSessions($request);
+        $orders = $this->getOrders($request);
 
         return view('shop.orders', compact('orders'));
     }
 
     public function get(Request $request)
     {
-        $orders = $this->getSessions($request);
+        $orders = $this->getOrders($request);
 
         return view('shop.orders', compact('orders'));
     }
 
-    protected function getSessions(Request $request)
+    protected function getOrders(Request $request)
     {
         $session_id = $request->session()->getId();
         $query = Order::where('session_id', $session_id);
