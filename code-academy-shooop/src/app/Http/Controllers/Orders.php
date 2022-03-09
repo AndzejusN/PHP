@@ -3,33 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
 
 class Orders extends Controller
 {
 
-    public function show()
+    public function show(Request $request)
     {
-        $products = [
-            ['name' => 'Mobile',
-                'model' => 'Samsung 3000',
-                "price" => '200',
-                'quantity' => '5'],
-            ['name' => 'Laptop',
-                'model' => 'Lenovo 200',
-                'price' => '300',
-                'quantity' => '8'],
-            ['name' => 'Tablet',
-                'model' => 'Apple 10',
-                'price' => '500',
-                'quantity' => '3'],
-            ['name' => 'Camera',
-                'model' => 'Canon R5',
-                'price' => '1000',
-                'quantity' => '6']
-        ];
 
+        $information = new Order;
+        $information->session_id = $request->session()->getId();
+        $information->product_id = $request->id;
 
-        return view('shop.orders', ['products' => $products]);
+        $information->save();
+
+        $sessions = $this->getSessions($request);
+
+        $products = Product::get();
+
+        return view('shop.orders', compact('products', 'sessions'));
     }
 
+    public function delete(Request $request)
+    {
+        $product_id = $request->id;
+        $query = Order::where('product_id', $product_id);
+        $query->delete();
+
+        $sessions = $this->getSessions($request);
+
+        return view('shop.orders', compact('sessions'));
+    }
+
+    public function get(Request $request)
+    {
+        $sessions = $this->getSessions($request);
+
+        return view('shop.orders', compact('sessions'));
+    }
+
+    protected function getSessions(Request $request)
+    {
+        $session_id = $request->session()->getId();
+        $query = Order::where('session_id', $session_id);
+
+        return $query->get();
+    }
 }

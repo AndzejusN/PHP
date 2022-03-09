@@ -65,6 +65,3 @@ class Products extends Controller
         return view('shop.store', compact('product'));
     }
 }
-
-
-

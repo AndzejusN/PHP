@@ -1,4 +1,4 @@
-<div class="col-4 row">
+<div class="col-3 row">
     <form class="form-group mb-5" action="{{ route( 'products' ) }}" method="GET">
 
         <label for="category"></label>

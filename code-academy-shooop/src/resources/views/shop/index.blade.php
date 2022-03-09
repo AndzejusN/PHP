@@ -7,22 +7,24 @@
 </head>
 <body>
 
-<header class="container mb-5">
+<header class="container pb-3">
     <div class="w-100 py-3">
-        <ul class="list-unstyled text-light">
-            <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('login')}}">Login</a>
-            </li>
-        </ul>
-        <ul class="list-unstyled text-light">
-            <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('products')}}">Products</a>
-            </li>
-            <li style="display: inline"><a type="button" class="btn btn-outline-dark"
-                                           href="{{route('orders')}}">Orders</a></li>
-            <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('product.create')}}">Create Product</a>
-            </li>
-            <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('contacts')}}">Contacts</a>
-            </li>
-        </ul>
+        <div class="mb-3 float-end">
+            <a type="button" class="btn btn-outline-dark" href="{{route('login')}}">Login</a>
+        </div>
+        <div>
+            <ul class="list-unstyled text-light">
+                <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('products')}}">Products</a>
+                </li>
+                <li style="display: inline"><a type="button" class="btn btn-outline-dark"
+                                               href="{{route('orders')}}">Orders</a></li>
+                <li style="display: inline"><a type="button" class="btn btn-outline-dark"
+                                               href="{{route('product.create')}}">Create Product</a>
+                </li>
+                <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="{{route('contacts')}}">Contacts</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <hr>
