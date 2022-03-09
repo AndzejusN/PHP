@@ -12,18 +12,16 @@ class Orders extends Controller
 
     public function show(Request $request)
     {
-
         $information = new Order;
         $information->session_id = $request->session()->getId();
         $information->product_id = $request->id;
-
         $information->save();
 
-        $sessions = $this->getSessions($request);
+        $orders = $this->getSessions($request);
 
         $products = Product::get();
 
-        return view('shop.orders', compact('products', 'sessions'));
+        return view('shop.orders', compact('products', 'orders'));
     }
 
     public function delete(Request $request)
@@ -32,16 +30,16 @@ class Orders extends Controller
         $query = Order::where('product_id', $product_id);
         $query->delete();
 
-        $sessions = $this->getSessions($request);
+        $orders = $this->getSessions($request);
 
-        return view('shop.orders', compact('sessions'));
+        return view('shop.orders', compact('orders'));
     }
 
     public function get(Request $request)
     {
-        $sessions = $this->getSessions($request);
+        $orders = $this->getSessions($request);
 
-        return view('shop.orders', compact('sessions'));
+        return view('shop.orders', compact('orders'));
     }
 
     protected function getSessions(Request $request)

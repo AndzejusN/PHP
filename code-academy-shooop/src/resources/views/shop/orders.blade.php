@@ -1,16 +1,15 @@
 @extends('shop.index')
 @section('content')
 
-
     <div class="d-flex flex-wrap">
-        @foreach ($sessions as $session)
+        @foreach ($orders as $order)
             @php
-                $product = App\Models\Product::where('id', $session->product_id)->first();
+                $product = App\Models\Product::where('id', $order->product_id)->first();
             @endphp
             <form action="{{route('delete')}}" class="card-body p-3 text-center" method="POST">
                 @csrf
                 @method('DELETE')
-                <input type="hidden" value="{{$session->product_id}}" name="id" id="id">
+                <input type="hidden" value="{{$order->product_id}}" name="id" id="id">
                 <div class="card text-center" style="width: 17rem;">
                     @php
                         $imageUrl = "storage/{$product->name}.png";
@@ -28,7 +27,7 @@
         @endforeach
     </div>
 
-    @if(!count($sessions))
+    @if(!count($orders))
         <div class="py-5">
             <h1>Order list is empty</h1>
         </div>
