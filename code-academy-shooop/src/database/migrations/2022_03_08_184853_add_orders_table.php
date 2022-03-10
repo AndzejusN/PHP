@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('product_id')->unsigned();
             $table->string('session_id',255);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('orders', function (Blueprint $table) {
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+
     }
 };
