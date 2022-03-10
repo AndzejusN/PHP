@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use App\Http\Requests\CreateProductRequest;
 use App\Models;
 
 class Products extends Controller
@@ -29,9 +30,7 @@ class Products extends Controller
 
         $categories = Models\Category::get();
 
-        $view = view('shop.products', compact('products', 'categories'));
-
-        $view
+        $view = view('shop.products', compact('products', 'categories'))
             ->with('category_id', $request->category)
             ->with('active', $request->check)
             ->with('search_val', $request->search);
@@ -48,15 +47,9 @@ class Products extends Controller
         return $view;
     }
 
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        $rules = [
-            'category_id' => ['required', 'exists:App\Models\Category,id'],
-            'model' => 'required|max:30',
-            'active' => 'required|numeric',
-            'name' => 'required|max:50',
-            'price' => 'required|numeric',
-        ];
+        $rules = $request->validated();
 
         $validated = $request->validate($rules);
 
