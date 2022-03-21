@@ -1,11 +1,24 @@
 <template>
-    <header class="header">
-        <h1>todos</h1>
-        <input
-            class="new-todo"
-            autofocus
-            placeholder="What needs to be done?"
-            @keyup.enter="addTodo"
-        />
+    <header class="container pb-3">
+        <div class="w-100 py-3">
+            <div class="mb-3 float-end">
+                <a type="button" class="btn btn-outline-dark" href="http://localhost:8085/login">Login</a>
+            </div>
+            <div>
+                <ul class="list-unstyled text-light">
+                    <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="http://localhost:8085/products">Products</a>
+                    </li>
+                    <li style="display: inline"><a type="button" class="btn btn-outline-dark"
+                                                   href="http://localhost:8085/orders">Orders</a></li>
+                    <li style="display: inline"><a type="button" class="btn btn-outline-dark"
+                                                   href="http://localhost:8085/product/create">Create Product</a>
+                    </li>
+                    <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="http://localhost:8085/contacts">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
     </header>
 </template>

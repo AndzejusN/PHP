@@ -1,11 +1,11 @@
 <script setup>
+import HeaderView from './views/partials/HeaderView.vue';
 import ProductList from './views/products/list.vue';
+import FooterView from './views/partials/FooterView.vue';
 </script>
 
 <template>
-    <div class="container py-3">
-        <main>
+            <HeaderView/>
             <ProductList/>
-        </main>
-    </div>
+            <FooterView/>
 </template>
