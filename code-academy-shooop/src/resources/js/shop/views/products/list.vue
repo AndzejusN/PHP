@@ -81,7 +81,7 @@ function addSearchParameter(name, value) {
                     <div class="mt-3">
                         <input type="checkbox" ref="check" id="checkbox" name="check" value="1"
                                v-model="state.check"
-                               @click="addSearchParameter('check', 1)"/>
+                               @click="addSearchParameter('check', state.check)"/>
                         <label for="checkbox">&nbsp Sell on-line</label>
                     </div>
                     <div class="mt-5">

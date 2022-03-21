@@ -19521,7 +19521,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.state.check = $event;
     }),
     onClick: _cache[4] || (_cache[4] = function ($event) {
-      return $setup.addSearchParameter('check', 1);
+      return $setup.addSearchParameter('check', $setup.state.check);
     })
   }, null, 512
   /* NEED_PATCH */
