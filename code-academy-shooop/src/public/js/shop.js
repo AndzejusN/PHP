@@ -19272,12 +19272,12 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function addSearchParameter(name, value) {
-      var paramsString = 'api/v1/products?';
-      var searchParams = new URLSearchParams();
-      searchParams.append(name, value);
-      state.check = false;
-      state.search = '';
-      loadProducts(paramsString + decodeURI(searchParams.toString()));
+      setTimeout(function () {
+        var paramsString = 'api/v1/products?';
+        var searchParams = new URLSearchParams();
+        searchParams.append(name, value);
+        loadProducts(paramsString + decodeURI(searchParams.toString()));
+      });
     }
 
     var __returned__ = {
@@ -19516,7 +19516,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ref: "check",
     id: "checkbox",
     name: "check",
-    value: "1",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.state.check = $event;
     }),

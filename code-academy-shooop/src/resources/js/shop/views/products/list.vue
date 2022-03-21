@@ -9,7 +9,6 @@ const state = reactive({
     check: false
 })
 
-
 function loadProducts(url = 'api/v1/products') {
     fetch(url).then(response => response.json()).then(data => {
         state.products = data.products;
@@ -39,15 +38,14 @@ function filterProductsDescending() {
 
 function addSearchParameter(name, value) {
 
-    const paramsString = 'api/v1/products?'
+    setTimeout(function () {
 
-    let searchParams = new URLSearchParams();
-    searchParams.append(name, value);
+        const paramsString = 'api/v1/products?'
+        let searchParams = new URLSearchParams();
+        searchParams.append(name, value);
 
-    state.check = false;
-    state.search = '';
-
-    loadProducts(paramsString + decodeURI(searchParams.toString()));
+        loadProducts(paramsString + decodeURI(searchParams.toString()));
+    });
 
 }
 
@@ -79,7 +77,7 @@ function addSearchParameter(name, value) {
             <div class="col-3 px-3">
                 <div class="row">
                     <div class="mt-3">
-                        <input type="checkbox" ref="check" id="checkbox" name="check" value="1"
+                        <input type="checkbox" ref="check" id="checkbox" name="check"
                                v-model="state.check"
                                @click="addSearchParameter('check', state.check)"/>
                         <label for="checkbox">&nbsp Sell on-line</label>
