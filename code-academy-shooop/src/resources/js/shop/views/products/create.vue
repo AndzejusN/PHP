@@ -96,7 +96,7 @@ function resetDecorations() {
                             }"
                            placeholder="Price"/>
                 </div>
-                <button class="btn btn-dark" @click="createProduct()" type="submit" id="main-submit">CREATE PRODUCT
+                <button class="btn btn-dark mt-3" @click="createProduct()" type="submit" id="main-submit">CREATE PRODUCT
                 </button>
             </div>
             <div class="text-center">
@@ -110,7 +110,7 @@ function resetDecorations() {
                         id="underline">Make with underline
                 </button>
             </div>
-            <div class="text-center">
+            <div class="text-center my-3">
                 <button class="btn btn-dark" @click="resetDecorations()" type="submit" id="reset">RESET DECORATIONS
                 </button>
             </div>
