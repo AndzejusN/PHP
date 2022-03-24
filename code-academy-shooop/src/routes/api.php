@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('/v1')->name('api.')->group(function(){
     Route::prefix('/products')->name('products.')->group(function(){
-Route::get('/',[Controllers\Api\V1\Products\ProductController::class, 'index'])->name('show');
-Route::post('/create',[Controllers\Api\V1\Products\ProductController::class, 'create'])->name('create');
+Route::get('/',[Controllers\Api\V1\Products\ProductController::class, 'index']);
+Route::post('/create',[Controllers\Api\V1\Products\ProductController::class, 'create']);
     });
 });

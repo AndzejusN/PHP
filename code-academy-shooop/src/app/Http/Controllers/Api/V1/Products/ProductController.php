@@ -40,8 +40,6 @@ class ProductController extends Controller
 
         if ($product) {
             $response = ['name' => 'Product created successfully'];
-        } else {
-            $response = ['name' => 'Whoooops! Something was wrong'];
         }
 
         return response()->json(compact('response'));

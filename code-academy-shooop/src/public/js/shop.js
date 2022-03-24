@@ -19236,10 +19236,35 @@ __webpack_require__.r(__webpack_exports__);
       price: null,
       isBold: false,
       isItalic: false,
-      isUnderline: false
+      isUnderline: false,
+      responseData: null
+    });
+    var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      category_id: null,
+      model: null,
+      active: null,
+      name: null,
+      price: null
     });
 
+    function cleanErrors() {
+      errors.category_id = null;
+      errors.model = null;
+      errors.active = null;
+      errors.name = null;
+      errors.price = null;
+    }
+
+    function cleanValues() {
+      state.category_id = null;
+      state.model = null;
+      state.active = null;
+      state.name = null;
+      state.price = null;
+    }
+
     function createProduct() {
+      cleanErrors();
       fetch('api/v1/products/create', {
         method: 'POST',
         headers: {
@@ -19253,6 +19278,17 @@ __webpack_require__.r(__webpack_exports__);
           'name': state.name,
           'price': state.price
         })
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        if (data.errors) {
+          for (var key in errors) {
+            errors[key] = data.errors[key] ? data.errors[key][0] : null;
+          }
+        } else {
+          state.responseData = data.response.name;
+          cleanValues();
+        }
       });
     }
 
@@ -19264,6 +19300,9 @@ __webpack_require__.r(__webpack_exports__);
 
     var __returned__ = {
       state: state,
+      errors: errors,
+      cleanErrors: cleanErrors,
+      cleanValues: cleanValues,
       createProduct: createProduct,
       resetDecorations: resetDecorations,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive
@@ -19367,60 +19406,110 @@ var _hoisted_3 = {
   "class": "card-body p-3 text-center"
 };
 var _hoisted_4 = {
+  style: {
+    "color": "green"
+  }
+};
+var _hoisted_5 = {
   "class": "form-outline"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label",
   "for": "category_id"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_6 = {
-  "class": "form-outline"
+var _hoisted_7 = {
+  key: 0,
+  style: {
+    "color": "red"
+  }
 };
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "form-label",
-  "for": "model"
-}, null, -1
-/* HOISTED */
-);
-
 var _hoisted_8 = {
   "class": "form-outline"
 };
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label",
-  "for": "active"
+  "for": "model"
 }, null, -1
 /* HOISTED */
 );
 
 var _hoisted_10 = {
+  key: 0,
+  style: {
+    "color": "red"
+  }
+};
+var _hoisted_11 = {
   "class": "form-outline"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form-label",
+  "for": "active"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
+  key: 0,
+  style: {
+    "color": "red"
+  }
+};
+var _hoisted_14 = {
+  "class": "form-outline"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label",
   "for": "name"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_16 = {
+  key: 0,
+  style: {
+    "color": "red"
+  }
+};
+var _hoisted_17 = {
   "class": "form-outline"
 };
-var _hoisted_13 = {
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form-label",
+  "for": "price"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
+  key: 0,
+  style: {
+    "color": "red"
+  }
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_21 = {
   "class": "text-center"
 };
-var _hoisted_14 = {
+var _hoisted_22 = {
   "class": "text-center my-3"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.responseData), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.state.category_id = $event;
@@ -19435,7 +19524,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Category name"
   }, null, 2
   /* CLASS */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.category_id]]), _hoisted_5]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.category_id]]), _hoisted_6, $setup.errors.category_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.category_id), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.state.model = $event;
@@ -19450,7 +19541,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Model"
   }, null, 2
   /* CLASS */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.model]]), _hoisted_7]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.model]]), _hoisted_9, $setup.errors.model ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.model), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.state.active = $event;
@@ -19465,7 +19558,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Activate product"
   }, null, 2
   /* CLASS */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.active]]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.active]]), _hoisted_12, $setup.errors.active ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.active), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.state.name = $event;
@@ -19480,7 +19575,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Product name"
   }, null, 2
   /* CLASS */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.name]]), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.name]]), _hoisted_15, $setup.errors.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.name), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $setup.state.price = $event;
@@ -19495,35 +19592,37 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Price"
   }, null, 2
   /* CLASS */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.price]]), _hoisted_18, $setup.errors.price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.price), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-dark mt-3",
     onClick: _cache[5] || (_cache[5] = function ($event) {
       return $setup.createProduct();
     }),
     type: "submit",
     id: "main-submit"
-  }, "CREATE PRODUCT ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "btn btn-dark",
+  }, "CREATE PRODUCT ")]), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-dark mx-3",
     onClick: _cache[6] || (_cache[6] = function ($event) {
       return $setup.state.isBold = !$setup.state.isBold;
     }),
     type: "submit",
     id: "bold"
   }, "Make bold "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "btn btn-dark",
+    "class": "btn btn-dark mx-3",
     onClick: _cache[7] || (_cache[7] = function ($event) {
-      return $setup.state.isItalic = !$setup.state.isItalic;
-    }),
-    type: "submit",
-    id: "italic"
-  }, "Make Italic "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "btn btn-dark",
-    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $setup.state.isUnderline = !$setup.state.isUnderline;
     }),
     type: "submit",
     id: "underline"
-  }, "Make with underline ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "Make with underline "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-dark mx-3",
+    onClick: _cache[8] || (_cache[8] = function ($event) {
+      return $setup.state.isItalic = !$setup.state.isItalic;
+    }),
+    type: "submit",
+    id: "italic"
+  }, " Make Italic ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-dark",
     onClick: _cache[9] || (_cache[9] = function ($event) {
       return $setup.resetDecorations();

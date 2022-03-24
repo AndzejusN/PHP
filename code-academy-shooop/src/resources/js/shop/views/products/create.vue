@@ -10,10 +10,39 @@ const state = reactive({
     price: null,
     isBold: false,
     isItalic: false,
-    isUnderline: false
+    isUnderline: false,
+    responseData: null,
 });
 
+const errors = reactive({
+    category_id: null,
+    model: null,
+    active: null,
+    name: null,
+    price: null,
+});
+
+function cleanErrors() {
+    errors.category_id = null;
+    errors.model = null;
+    errors.active = null;
+    errors.name = null;
+    errors.price = null;
+}
+
+function cleanValues() {
+        state.category_id = null;
+        state.model = null;
+        state.active = null;
+        state.name = null;
+        state.price = null;
+}
+
+
 function createProduct() {
+
+    cleanErrors();
+
     fetch('api/v1/products/create', {
         method: 'POST',
         headers: {
@@ -27,7 +56,17 @@ function createProduct() {
             'name': state.name,
             'price': state.price
         })
-    });
+    }).then(response => response.json())
+        .then(data => {
+            if (data.errors) {
+                for (let key in errors) {
+                    errors[key] = data.errors[key] ? data.errors[key][0] : null;
+                }
+            } else {
+                state.responseData = data.response.name;
+                cleanValues();
+            }
+        });
 }
 
 function resetDecorations() {
@@ -42,16 +81,20 @@ function resetDecorations() {
     <div class="container">
         <div class="row">
             <div class="card-body p-3 text-center">
+                <span style="color: green">{{ state.responseData }} </span>
                 <div class="form-outline">
                     <input type="text" v-model="state.category_id" name="category_id" id="category_id"
                            class="form-control form-control-sm"
                            :class="
                             { bold: state.isBold,
                               italic: state.isItalic,
-                              underline: state.isUnderline
+                              underline: state.isUnderline,
                             }"
                            placeholder="Category name"/>
                     <label class="form-label" for="category_id"></label>
+                    <div v-if="errors.category_id" style="color: red">
+                        <span>{{ errors.category_id }}</span>
+                    </div>
                 </div>
                 <div class="form-outline">
                     <input type="text" v-model="state.model" name="model" id="model"
@@ -59,10 +102,13 @@ function resetDecorations() {
                            :class="
                             { bold: state.isBold,
                               italic: state.isItalic,
-                              underline: state.isUnderline
+                              underline: state.isUnderline,
                             }"
                            placeholder="Model"/>
                     <label class="form-label" for="model"></label>
+                    <div v-if="errors.model" style="color: red">
+                        <span>{{ errors.model }}</span>
+                    </div>
                 </div>
                 <div class="form-outline">
                     <input type="text" v-model="state.active" name="active" id="active"
@@ -74,6 +120,9 @@ function resetDecorations() {
                             }"
                            placeholder="Activate product"/>
                     <label class="form-label" for="active"></label>
+                    <div v-if="errors.active" style="color: red">
+                        <span>{{ errors.active }}</span>
+                    </div>
                 </div>
                 <div class="form-outline">
                     <input type="text" v-model="state.name" name="name" id="name"
@@ -85,6 +134,9 @@ function resetDecorations() {
                             }"
                            placeholder="Product name"/>
                     <label class="form-label" for="name"></label>
+                    <div v-if="errors.name" style="color: red">
+                        <span>{{ errors.name }}</span>
+                    </div>
                 </div>
                 <div class="form-outline">
                     <input type="text" v-model="state.price" name="price" id="price"
@@ -95,19 +147,25 @@ function resetDecorations() {
                               underline: state.isUnderline
                             }"
                            placeholder="Price"/>
+                    <label class="form-label" for="price"></label>
+                    <div v-if="errors.price" style="color: red">
+                        <span>{{ errors.price }}</span>
+                    </div>
                 </div>
                 <button class="btn btn-dark mt-3" @click="createProduct()" type="submit" id="main-submit">CREATE PRODUCT
                 </button>
             </div>
+            <hr>
             <div class="text-center">
-                <button class="btn btn-dark" @click="state.isBold = !state.isBold" type="submit"
+                <button class="btn btn-dark mx-3" @click="state.isBold = !state.isBold" type="submit"
                         id="bold">Make bold
                 </button>
-                <button class="btn btn-dark" @click="state.isItalic = !state.isItalic" type="submit" id="italic">Make
-                    Italic
-                </button>
-                <button class="btn btn-dark" @click="state.isUnderline = !state.isUnderline" type="submit"
+                <button class="btn btn-dark mx-3" @click="state.isUnderline = !state.isUnderline" type="submit"
                         id="underline">Make with underline
+                </button>
+                <button class="btn btn-dark mx-3" @click="state.isItalic = !state.isItalic" type="submit" id="italic">
+                    Make
+                    Italic
                 </button>
             </div>
             <div class="text-center my-3">
