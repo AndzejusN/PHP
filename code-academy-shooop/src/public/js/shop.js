@@ -19230,6 +19230,7 @@ __webpack_require__.r(__webpack_exports__);
     expose();
     var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       category_id: null,
+      categories: null,
       model: null,
       active: null,
       name: null,
@@ -19247,20 +19248,13 @@ __webpack_require__.r(__webpack_exports__);
       price: null
     });
 
-    function cleanErrors() {
-      errors.category_id = null;
-      errors.model = null;
-      errors.active = null;
-      errors.name = null;
-      errors.price = null;
-    }
-
-    function cleanValues() {
-      state.category_id = null;
-      state.model = null;
-      state.active = null;
-      state.name = null;
-      state.price = null;
+    function loadCategories() {
+      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'api/v1/products';
+      fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        state.categories = data.categories;
+      });
     }
 
     function createProduct() {
@@ -19288,6 +19282,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           state.responseData = data.response.name;
           cleanValues();
+          resetDecorations();
         }
       });
     }
@@ -19298,13 +19293,30 @@ __webpack_require__.r(__webpack_exports__);
       state.isUnderline = false;
     }
 
+    function cleanErrors() {
+      errors.category_id = null;
+      errors.model = null;
+      errors.active = null;
+      errors.name = null;
+      errors.price = null;
+    }
+
+    function cleanValues() {
+      state.category_id = null;
+      state.model = null;
+      state.active = null;
+      state.name = null;
+      state.price = null;
+    }
+
     var __returned__ = {
       state: state,
       errors: errors,
-      cleanErrors: cleanErrors,
-      cleanValues: cleanValues,
+      loadCategories: loadCategories,
       createProduct: createProduct,
       resetDecorations: resetDecorations,
+      cleanErrors: cleanErrors,
+      cleanValues: cleanValues,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -19526,7 +19538,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.category_id]]), _hoisted_6, $setup.errors.category_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.errors.category_id), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            <div class=\"form-outline\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <select class=\"form-control form-control-sm\" v-model=\"state.category_id\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <option v-for=\"category in state.categories\" :value=\"state.category_id\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <option disabled value=\"\">Please select product category...</option>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                </select>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("            </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.state.model = $event;

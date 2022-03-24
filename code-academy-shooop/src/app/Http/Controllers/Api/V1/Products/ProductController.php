@@ -27,7 +27,14 @@ class ProductController extends Controller
 
         $products = $query->get();
 
-        return response()->json(compact('products'));
+        $categories = Models\Category::get();
+
+        $view = view('shop.products', compact('products', 'categories'))
+            ->with('category_id', $request->category)
+            ->with('active', $request->check)
+            ->with('search_val', $request->search);
+
+        return $view;
     }
 
     public function create(CreateProductRequest $request)

@@ -4,6 +4,7 @@ import {reactive} from 'vue';
 
 const state = reactive({
     category_id: null,
+    categories: null,
     model: null,
     active: null,
     name: null,
@@ -22,22 +23,12 @@ const errors = reactive({
     price: null,
 });
 
-function cleanErrors() {
-    errors.category_id = null;
-    errors.model = null;
-    errors.active = null;
-    errors.name = null;
-    errors.price = null;
-}
 
-function cleanValues() {
-        state.category_id = null;
-        state.model = null;
-        state.active = null;
-        state.name = null;
-        state.price = null;
+function loadCategories(url = 'api/v1/products') {
+    fetch(url).then(response => response.json()).then(data => {
+        state.categories = data.categories;
+    });
 }
-
 
 function createProduct() {
 
@@ -65,6 +56,7 @@ function createProduct() {
             } else {
                 state.responseData = data.response.name;
                 cleanValues();
+                resetDecorations();
             }
         });
 }
@@ -73,6 +65,22 @@ function resetDecorations() {
     state.isBold = false;
     state.isItalic = false;
     state.isUnderline = false;
+}
+
+function cleanErrors() {
+    errors.category_id = null;
+    errors.model = null;
+    errors.active = null;
+    errors.name = null;
+    errors.price = null;
+}
+
+function cleanValues() {
+    state.category_id = null;
+    state.model = null;
+    state.active = null;
+    state.name = null;
+    state.price = null;
 }
 
 </script>
@@ -96,6 +104,14 @@ function resetDecorations() {
                         <span>{{ errors.category_id }}</span>
                     </div>
                 </div>
+
+<!--            <div class="form-outline">-->
+<!--                <select class="form-control form-control-sm" v-model="state.category_id">-->
+<!--                    <option v-for="category in state.categories" :value="state.category_id">-->
+<!--                    <option disabled value="">Please select product category...</option>-->
+<!--                </select>-->
+<!--            </div>-->
+
                 <div class="form-outline">
                     <input type="text" v-model="state.model" name="model" id="model"
                            class="form-control form-control-sm"
