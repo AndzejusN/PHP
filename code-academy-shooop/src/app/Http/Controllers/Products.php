@@ -49,7 +49,7 @@ class Products extends Controller
 
     public function store(CreateProductRequest $request)
     {
-        $rules = $request->validated();
+        $rules = $request->rules();
 
         $validated = $request->validate($rules);
 

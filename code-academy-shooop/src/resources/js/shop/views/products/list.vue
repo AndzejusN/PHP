@@ -6,8 +6,8 @@ const state = reactive({
     products: [],
     removableProductIndex: null,
     search: '',
-    check: false
-})
+    check: ''
+});
 
 function loadProducts(url = 'api/v1/products') {
     fetch(url).then(response => response.json()).then(data => {
@@ -35,18 +35,19 @@ function filterProductsDescending() {
     state.products = state.products.sort((a, b) => a.id > b.id ? -1 : 1);
 }
 
-
 function addSearchParameter(name, value) {
+    const paramsString = 'api/v1/products?';
 
-    setTimeout(function () {
+    if (value === true) {
+        value = 1;
+    } else {
+        value = '';
+    }
 
-        const paramsString = 'api/v1/products?'
-        let searchParams = new URLSearchParams();
-        searchParams.append(name, value);
+    let searchParams = new URLSearchParams();
+    searchParams.append(name, value);
 
-        loadProducts(paramsString + decodeURI(searchParams.toString()));
-    });
-
+    loadProducts(paramsString + decodeURI(searchParams.toString()));
 }
 
 </script>
@@ -77,10 +78,10 @@ function addSearchParameter(name, value) {
             <div class="col-3 px-3">
                 <div class="row">
                     <div class="mt-3">
-                        <input type="checkbox" ref="check" id="checkbox" name="check"
+                        <input type="checkbox" id="check" name="check"
                                v-model="state.check"
-                               @click="addSearchParameter('check', state.check)"/>
-                        <label for="checkbox">&nbsp Sell on-line</label>
+                               @change="addSearchParameter('check', state.check)"/>
+                        <label for="check">&nbsp; Sell on-line</label>
                     </div>
                     <div class="mt-5">
                         <div class="input-group">
@@ -98,7 +99,7 @@ function addSearchParameter(name, value) {
             </div>
             <div class="col-8 d-flex flex-wrap mt-3 px-3">
                 <div class="row input-group" style="display:inline-flex; width:auto;">
-                    <div class="card text-center" v-for="(product,i) in state.products" style="width: 17rem;">
+                    <div class="card text-center" v-for="(product) in state.products" :key="product.id" style="width: 17rem;">
                         <img class="card-img-top" src="img/noimage.png" alt="Some ...">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>

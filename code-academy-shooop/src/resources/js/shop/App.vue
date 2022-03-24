@@ -1,11 +1,11 @@
 <script setup>
 import HeaderView from './views/partials/HeaderView.vue';
-import ProductList from './views/products/list.vue';
+import CreateForm from './views/products/create.vue';
 import FooterView from './views/partials/FooterView.vue';
 </script>
 
 <template>
             <HeaderView/>
-            <ProductList/>
+            <CreateForm/>
             <FooterView/>
 </template>

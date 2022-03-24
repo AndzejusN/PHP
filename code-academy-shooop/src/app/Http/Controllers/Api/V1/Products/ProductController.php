@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProductRequest;
 use App\Models;
 use Illuminate\Http\Request;
 
@@ -27,5 +28,22 @@ class ProductController extends Controller
         $products = $query->get();
 
         return response()->json(compact('products'));
+    }
+
+    public function create(CreateProductRequest $request)
+    {
+        $rules = $request->rules();
+
+        $validated = $request->validate($rules);
+
+        $product = Models\Product::create($validated);
+
+        if ($product) {
+            $response = ['name' => 'Product created successfully'];
+        } else {
+            $response = ['name' => 'Whoooops! Something was wrong'];
+        }
+
+        return response()->json(compact('response'));
     }
 }
