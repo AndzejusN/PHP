@@ -23,5 +23,6 @@ Route::prefix('/v1')->name('api.')->group(function(){
     Route::prefix('/products')->name('products.')->group(function(){
 Route::get('/',[Controllers\Api\V1\Products\ProductController::class, 'index']);
 Route::post('/create',[Controllers\Api\V1\Products\ProductController::class, 'create']);
+Route::get('/categories',[Controllers\Api\V1\Products\ProductCategoryController::class, 'index']);
     });
 });

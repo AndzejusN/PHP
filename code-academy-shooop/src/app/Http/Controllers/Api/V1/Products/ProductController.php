@@ -27,26 +27,19 @@ class ProductController extends Controller
 
         $products = $query->get();
 
-        $categories = Models\Category::get();
-
-        $view = view('shop.products', compact('products', 'categories'))
-            ->with('category_id', $request->category)
-            ->with('active', $request->check)
-            ->with('search_val', $request->search);
-
-        return $view;
+        return response()->json(compact('products'));
     }
 
     public function create(CreateProductRequest $request)
     {
-        $rules = $request->rules();
-
-        $validated = $request->validate($rules);
+        $validated = $request->validated();
 
         $product = Models\Product::create($validated);
 
         if ($product) {
             $response = ['name' => 'Product created successfully'];
+        } else {
+            $response = ['name' => 'Whooops! It was mistake, please try again'];
         }
 
         return response()->json(compact('response'));

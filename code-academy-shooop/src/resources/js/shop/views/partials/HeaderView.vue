@@ -1,7 +1,7 @@
 <template>
-    <header class="container pb-3">
-        <div class="w-100 py-3">
-            <div class="mb-3 float-end">
+    <header class="container">
+        <div class="w-100 pt-2">
+            <div class="float-end">
                 <a type="button" class="btn btn-outline-dark" href="http://localhost:8085/login">Login</a>
             </div>
             <div>
@@ -18,7 +18,6 @@
                 </ul>
             </div>
         </div>
-
         <hr>
     </header>
 </template>
