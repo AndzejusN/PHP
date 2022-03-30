@@ -1,8 +1,10 @@
 <script setup>
 
 import {reactive} from 'vue';
+import {useRoute} from 'vue-router';
 
 const state = reactive({
+    id: null,
     category_id: null,
     categories: null,
     model: null,
@@ -16,18 +18,33 @@ const state = reactive({
     errors: {}
 });
 
-function loadCategories(url = 'api/v1/products/categories') {
+const route = useRoute();
+
+if (route.params.id) {
+    fetch(`/api/v1/products/find/${route.params.id}`).then(response => response.json()).then(data =>{
+        state.category_id = data.product[0].category_id;
+        state.model = data.product[0].model;
+        state.active = data.product[0].active;
+        state.name = data.product[0].name;
+        state.price = data.product[0].price;
+    });
+    state.id = route.params.id;
+    }
+
+    const url = '/api/v1/products/categories';
     fetch(url).then(response => response.json()).then(data => {
         state.categories = data.categories;
     });
-}
 
-loadCategories();
 
 function createProduct() {
+    let url = '/api/v1/products/create';
 
+    if(state.id) {
+        url += '/' + state.id;
+    }
 
-    fetch('api/v1/products/create', {
+    fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -48,7 +65,7 @@ function createProduct() {
                     state.errors[key] = data.errors[key] ? data.errors[key][0] : null;
                 }
             } else {
-                state.responseData = data.response.name;
+                state.responseData = data;
                 cleanValues();
                 resetDecorations();
             }
@@ -62,6 +79,7 @@ function resetDecorations() {
 }
 
 function cleanValues() {
+    state.id = null;
     state.category_id = null;
     state.model = null;
     state.active = null;
@@ -75,7 +93,7 @@ function cleanValues() {
     <div class="container">
         <div class="row">
             <div class="card-body text-start">
-                <span style="color: green">{{ state.responseData }} </span>
+                <span v-if="state.responseData" style="color: green">{{ state.responseData.response.name }} </span>
                 <div class="form-outline py-2">
                     <label class="form-label">Activate product:</label>
                     <select class="form-control form-control-sm"
@@ -85,7 +103,7 @@ function cleanValues() {
                               underline: state.isUnderline
                             }"
                             v-model="state.active" id="active">
-                        <option selected="true" disabled="disabled">Activate product...</option>
+                        <option disabled="disabled" value="null">Activate product...</option>
                         <option value="0">No</option>
                         <option value="1">Yes</option>
                     </select>
@@ -102,7 +120,7 @@ function cleanValues() {
                               underline: state.isUnderline,
                             }"
                             v-model="state.category_id" id="category_id">
-                        <option selected="true" disabled="disabled">Please select product category...</option>
+                        <option disabled="disabled" value="null">Please select product category...</option>
                         <option v-for="category in state.categories" :value="category.id" :key="category">
                             {{ category.name }}
                         </option>
@@ -155,7 +173,7 @@ function cleanValues() {
                 </div>
                 <div class="text-center">
                     <button class="btn btn-dark mt-1" @click="createProduct()" type="submit" id="main-submit">
-                        CREATE PRODUCT
+                        CREATE OR CHANGE PRODUCT
                     </button>
                 </div>
             </div>

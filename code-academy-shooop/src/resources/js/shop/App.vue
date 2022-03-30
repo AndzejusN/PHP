@@ -1,11 +1,16 @@
 <script setup>
-import HeaderView from './views/partials/HeaderView.vue';
-import CreateForm from './views/products/create.vue';
-import FooterView from './views/partials/FooterView.vue';
+import HeaderView from './views/partials/HeaderView';
+import FooterView from './views/partials/FooterView';
+
+
 </script>
 
 <template>
-            <HeaderView/>
-            <CreateForm/>
-            <FooterView/>
+    <div class="container py-3">
+        <HeaderView/>
+        <main class="py-3">
+            <RouterView />
+        </main>
+        <FooterView/>
+    </div>
 </template>

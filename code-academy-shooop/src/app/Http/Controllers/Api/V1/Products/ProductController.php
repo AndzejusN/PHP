@@ -30,18 +30,31 @@ class ProductController extends Controller
         return response()->json(compact('products'));
     }
 
-    public function create(CreateProductRequest $request)
+    public function create(CreateProductRequest $request, $id = null)
     {
         $validated = $request->validated();
 
-        $product = Models\Product::create($validated);
-
-        if ($product) {
-            $response = ['name' => 'Product created successfully'];
+        if ($id !== null) {
+            $product = Models\Product::where('id', $id)->first();
         } else {
-            $response = ['name' => 'Whooops! It was mistake, please try again'];
+            $product = new Models\Product;
+        }
+
+        $product->fill($validated);
+
+        $check = $product->save();
+
+        if ($check) {
+            $response = ['name' => 'Product created successfully'];
         }
 
         return response()->json(compact('response'));
+    }
+
+    public function find($id)
+    {
+        $product = Models\Product::where('id', $id)->get();
+
+        return response()->json(compact('product'));
     }
 }

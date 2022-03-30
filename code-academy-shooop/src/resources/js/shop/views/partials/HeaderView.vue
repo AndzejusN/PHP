@@ -5,17 +5,12 @@
                 <a type="button" class="btn btn-outline-dark" href="http://localhost:8085/login">Login</a>
             </div>
             <div>
-                <ul class="list-unstyled text-light">
-                    <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="http://localhost:8085/products">Products</a>
-                    </li>
-                    <li style="display: inline"><a type="button" class="btn btn-outline-dark"
-                                                   href="http://localhost:8085/orders">Orders</a></li>
-                    <li style="display: inline"><a type="button" class="btn btn-outline-dark"
-                                                   href="http://localhost:8085/product/create">Create Product</a>
-                    </li>
-                    <li style="display: inline"><a type="button" class="btn btn-outline-dark" href="http://localhost:8085/contacts">Contacts</a>
-                    </li>
-                </ul>
+                <nav class="d-inline-flex text-light">
+                    <RouterLink class="btn btn-outline-dark" :to="{name: 'products-index'}">Products
+                    </RouterLink>
+                    <RouterLink class="btn btn-outline-dark" :to="{name: 'products-manage'}">Product Manage
+                    </RouterLink>
+                </nav>
             </div>
         </div>
         <hr>

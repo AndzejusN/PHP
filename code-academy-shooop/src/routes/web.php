@@ -40,4 +40,4 @@ Route::delete('/orders/delete', [Orders::class, 'delete'])->name('delete');
 Route::get('/contacts', [Contacts::class, 'show'])->name('contacts');
 Route::get('/login', [Login::class, 'show'])->name('login');
 
-Route::view('/shop','shopvue.index');
+Route::view('/shop/{vue?}','shopvue.index')->where('vue','[\/\w\.-]*');

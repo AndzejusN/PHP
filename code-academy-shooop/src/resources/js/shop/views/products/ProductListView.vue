@@ -2,6 +2,7 @@
 
 import {reactive} from 'vue';
 
+
 const state = reactive({
     products: [],
     removableProductIndex: null,
@@ -9,11 +10,13 @@ const state = reactive({
     check: ''
 });
 
-function loadProducts(url = 'api/v1/products') {
+function loadProducts(url = '/api/v1/products') {
     fetch(url).then(response => response.json()).then(data => {
         state.products = data.products;
     });
 }
+
+loadProducts();
 
 function deleteProducts() {
     state.products = [];
@@ -99,14 +102,15 @@ function addSearchParameter(name, value) {
             </div>
             <div class="col-8 d-flex flex-wrap mt-3 px-3">
                 <div class="row input-group" style="display:inline-flex; width:auto;">
-                    <div class="card text-center" v-for="(product) in state.products" :key="product.id" style="width: 17rem;">
-                        <img class="card-img-top" src="img/noimage.png" alt="Some ...">
+                    <div class="card text-center" v-for="product in state.products" :key="product.id" style="width: 17rem;">
+                        <img class="card-img-top" src="/img/noimage.png" alt="Some ...">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">{{ product.id }}</p>
                             <p class="card-text">{{ product.model }}</p>
                             <p class="card-text">{{ product.price }} Euro</p>
                         </div>
+                        <button  @click="$router.push({name: 'products-manage', params: {id: product.id}})" type="button" class="w-100 btn btn-lg btn-outline-primary mb-2">Change Product</button>
                     </div>
                 </div>
             </div>

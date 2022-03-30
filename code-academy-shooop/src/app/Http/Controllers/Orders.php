@@ -34,7 +34,6 @@ class Orders extends Controller
 
         return view('shop.orders', compact('orders'));
 
-//        return redirect()->route('orders', compact('orders'));
     }
 
     public function get(Request $request)
@@ -43,7 +42,6 @@ class Orders extends Controller
 
         return view('shop.orders', compact('orders'));
 
-//        return redirect()->route('orders', compact('orders'));
     }
 
     protected function getOrders(Request $request)
